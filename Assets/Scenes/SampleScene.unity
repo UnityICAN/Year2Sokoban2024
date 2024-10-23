@@ -228,7 +228,6 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
-  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -310,18 +309,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &963194229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9f45b21b02d6704fb390f3ad740ffe5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1728246778
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,6 +438,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wallTilePrefab: {fileID: 270697896376444301, guid: f62bd89243aab4543a6f397d7d016b84, type: 3}
   floorTilePrefab: {fileID: 8479665072472593995, guid: 870722232599d9e4caa1dd22bf8846c5, type: 3}
+  boxTilePrefab: {fileID: 8479665072472593995, guid: b4b196a5c7ce9fd49ac406e468de52e6, type: 3}
+  playerController: {fileID: 1728246779}
+  levelToLoad: {fileID: 11400000, guid: 1e6f19baaf9a76b449d5eea4a10f5346, type: 2}
 --- !u!4 &1928097428
 Transform:
   m_ObjectHideFlags: 0

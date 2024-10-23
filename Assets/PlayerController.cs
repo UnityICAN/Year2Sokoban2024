@@ -4,8 +4,8 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private BoardManager boardManager;
     private Vector2Int position;
 
-    private void Start() {
-        position = new Vector2Int(3, 3);
+    public void Init(Vector2Int startPosition) {
+        position = startPosition;
         transform.position = new Vector2(position.x, -position.y);
     }
 
@@ -22,9 +22,30 @@ public class PlayerController : MonoBehaviour {
             desiredPosition = new Vector2Int(position.x + 1, position.y);
 
         if (desiredPosition != position) {
-            if (boardManager.board[desiredPosition.x, desiredPosition.y] == false) {
-                position = desiredPosition;
-                transform.position = new Vector2(position.x, -position.y);
+            if (desiredPosition.x <= 9
+                && desiredPosition.y <= 9
+                && desiredPosition.x >= 0
+                && desiredPosition.y >= 0) {
+                // Cas sol
+                if (boardManager.board[desiredPosition.y, desiredPosition.x] == TileType.Floor) {
+                    position = desiredPosition;
+                    transform.position = new Vector2(position.x, -position.y);
+                // Cas boite
+                } else if (boardManager.board[desiredPosition.y, desiredPosition.x] == TileType.Box) {
+                    Vector2Int desiredBoxPosition = desiredPosition + (desiredPosition - position);
+                    if (desiredBoxPosition.x <= 9
+                        && desiredBoxPosition.y <= 9
+                        && desiredBoxPosition.x >= 0
+                        && desiredBoxPosition.y >= 0
+                        && boardManager.board[desiredBoxPosition.y, desiredBoxPosition.x] == TileType.Floor)
+                    {
+                        position = desiredPosition;
+                        transform.position = new Vector2(position.x, -position.y);
+                        boardManager.board[desiredPosition.y, desiredPosition.x] = TileType.Floor;
+                        boardManager.board[desiredBoxPosition.y, desiredBoxPosition.x] = TileType.Box;
+                        boardManager.UpdateVisuals();
+                    }
+                }
             }
         }
     }
