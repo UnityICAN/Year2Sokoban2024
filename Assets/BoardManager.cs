@@ -5,6 +5,8 @@ public class BoardManager : MonoBehaviour {
     [SerializeField] private GameObject wallTilePrefab;
     [SerializeField] private GameObject floorTilePrefab;
     [SerializeField] private GameObject boxTilePrefab;
+    [SerializeField] private GameObject switchTilePrefab;
+    [SerializeField] private GameObject boxAndSwitchTilePrefab;
     [SerializeField] private PlayerController playerController;
 
     [SerializeField] private LevelObject levelToLoad;
@@ -31,6 +33,9 @@ public class BoardManager : MonoBehaviour {
                         board[row, col] = TileType.Floor;
                         playerController.Init(new Vector2Int(col, row));
                         break;
+                    case 'E':
+                        board[row, col] = TileType.Switch;
+                        break;
                 }
             }
         }
@@ -51,6 +56,16 @@ public class BoardManager : MonoBehaviour {
                         transform);
                 else if (board[row, col] == TileType.Box)
                     Instantiate(boxTilePrefab,
+                        new Vector2(col, -row),
+                        Quaternion.identity,
+                        transform);
+                else if (board[row, col] == TileType.Switch)
+                    Instantiate(switchTilePrefab,
+                        new Vector2(col, -row),
+                        Quaternion.identity,
+                        transform);
+                else if (board[row, col] == TileType.SwitchAndBox)
+                    Instantiate(boxAndSwitchTilePrefab,
                         new Vector2(col, -row),
                         Quaternion.identity,
                         transform);

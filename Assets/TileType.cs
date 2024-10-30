@@ -2,5 +2,7 @@
 {
     Floor,
     Wall,
-    Box
+    Box,
+    Switch,
+    SwitchAndBox
 }
