@@ -58,9 +58,23 @@ public class PlayerController : MonoBehaviour {
                             boardManager.board[desiredBoxPosition.y, desiredBoxPosition.x] = TileType.SwitchAndBox;
                         
                         boardManager.UpdateVisuals();
+                        CheckWinCondition();
                     }
                 }
             }
         }
+    }
+
+    private void CheckWinCondition() {
+        for (int row = 0; row < 10; row++) {
+            for (int col = 0; col < 10; col++) {
+                if (boardManager.board[row, col] == TileType.Switch) // Il reste un interrupteur
+                    return;
+            }
+        }
+
+        // On sort des boucles, donc on a atteint aucun return, donc il n'y a plus d'interrupteurs vides
+        Debug.Log("victoire !");
+
     }
 }

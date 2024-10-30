@@ -14,8 +14,12 @@ public class BoardManager : MonoBehaviour {
     public TileType[,] board { get; private set; }
 
     private void Start() {
+        LoadLevel(levelToLoad);
+    }
+
+    public void LoadLevel(LevelObject loadedLevel) {
         board = new TileType[10, 10];
-        string[] levelLines = levelToLoad.content.Split('\n');
+        string[] levelLines = loadedLevel.content.Split('\n');
 
         for (int row = 0; row < 10; row++) {
             for (int col = 0; col < 10; col++) {
